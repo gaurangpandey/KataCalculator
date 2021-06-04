@@ -11,4 +11,9 @@ public class StringCalculatorTest
     public void sumEmptyStringTo0() {
         assertThat(StringCalculator.add(""), is(0));
     }
+    
+    @Test
+    public void sumSingleNumberToself() {
+    	assertThat(StringCalculator.add("5"), is(5));
+    }
 }
