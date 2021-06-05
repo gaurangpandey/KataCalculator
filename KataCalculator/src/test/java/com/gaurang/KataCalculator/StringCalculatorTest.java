@@ -28,4 +28,10 @@ public class StringCalculatorTest
     public void sumNumberDelimiter() {
     	assertThat(StringCalculator.add("//;\n1;2"), is(3));
     }
+    @Test(expected = IllegalArgumentException.class)
+    public void OnNegativeNumber() {
+    	StringCalculator.add("-3");
+    }
+    
+    
 }

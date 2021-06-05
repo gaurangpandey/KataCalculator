@@ -1,6 +1,7 @@
 package com.gaurang.KataCalculator;
 
 import java.util.Arrays;
+import java.util.stream.IntStream;
 import java.util.stream.Stream;
 
 public class StringCalculator {
@@ -30,7 +31,15 @@ public class StringCalculator {
 
 
 	private int number() {
-		return Arrays.stream(sum.split(delimiter)).mapToInt(Integer::parseInt).sum();
+		if(getNumber().anyMatch(n -> n < 0)) {
+			throw new IllegalArgumentException();
+		}
+		return getNumber().sum();
+	}
+
+
+	private IntStream getNumber() {
+		return Arrays.stream(sum.split(delimiter)).mapToInt(Integer::parseInt);
 	}
     	
 }
