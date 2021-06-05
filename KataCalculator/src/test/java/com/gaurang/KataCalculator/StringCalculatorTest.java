@@ -3,7 +3,9 @@ package com.gaurang.KataCalculator;
 import static org.hamcrest.CoreMatchers.is;
 import static org.junit.Assert.assertThat;
 
+import org.junit.Rule;
 import org.junit.Test;
+import org.junit.rules.ExpectedException;
 
 public class StringCalculatorTest 
 {
@@ -28,9 +30,22 @@ public class StringCalculatorTest
     public void sumNumberDelimiter() {
     	assertThat(StringCalculator.add("//;\n1;2"), is(3));
     }
-    @Test(expected = IllegalArgumentException.class)
+    
+    @Rule 
+    public ExpectedException expectedexception= ExpectedException.none();
+    
+    @Test
     public void OnNegativeNumber() {
+    	expectedexception.expect(IllegalArgumentException.class);
+    	expectedexception.expectMessage("number is: -3");
     	StringCalculator.add("-3");
+    }
+    
+    @Test
+    public void OnMultiNegativeNumberAllInMessage() {
+    	expectedexception.expect(IllegalArgumentException.class);
+    	expectedexception.expectMessage("number is: -3,-2,-1");
+    	StringCalculator.add("-3,1,-2,-1");
     }
     
     

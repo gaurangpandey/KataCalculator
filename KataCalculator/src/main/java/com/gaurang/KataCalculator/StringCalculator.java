@@ -1,8 +1,8 @@
 package com.gaurang.KataCalculator;
 
 import java.util.Arrays;
+import java.util.stream.Collectors;
 import java.util.stream.IntStream;
-import java.util.stream.Stream;
 
 public class StringCalculator {
 	
@@ -31,10 +31,17 @@ public class StringCalculator {
 
 
 	private int number() {
-		if(getNumber().anyMatch(n -> n < 0)) {
-			throw new IllegalArgumentException();
-		}
+		exceptionNoNegative();
 		return getNumber().sum();
+	}
+
+
+	private void exceptionNoNegative() {
+		
+			String message=getNumber().filter(n -> n <0).mapToObj(Integer::toString).collect(Collectors.joining(","));
+			if(!message.isEmpty()) {
+			throw new IllegalArgumentException("number is: "+message);
+		}
 	}
 
 
