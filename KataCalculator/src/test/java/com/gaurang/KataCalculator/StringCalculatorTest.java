@@ -16,4 +16,8 @@ public class StringCalculatorTest
     public void sumSingleNumberToself() {
     	assertThat(StringCalculator.add("5"), is(5));
     }
+    @Test
+    public void sumTwoNumberComma() {
+    	assertThat(StringCalculator.add("1,2"), is(3));
+    }
 }
