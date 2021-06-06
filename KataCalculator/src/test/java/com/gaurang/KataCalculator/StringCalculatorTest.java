@@ -57,5 +57,9 @@ public class StringCalculatorTest
     public void delimiterAnyLength() {
     	assertThat(StringCalculator.add("//[***]\n1***2***3"), is(6));
     }
+    @Test
+    public void multipledDelimiter() {
+    	assertThat(StringCalculator.add("//[*][%]\n1*2%3"), is(6));
+    }
     
 }
