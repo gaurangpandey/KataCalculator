@@ -13,7 +13,6 @@ public class StringCalculator {
 		this.sum=sum;	
 	}
 	
-	
     public static int add(String input) {
     	if(input.isEmpty())
     		return 0;
@@ -29,25 +28,19 @@ public class StringCalculator {
     	return calculator.number();
     	}
 
-
 	private int number() {
 		exceptionNoNegative();
 		return getNumber().sum();
 	}
-
-
 	private void exceptionNoNegative() {
-		
-			String message=getNumber().filter(n -> n <0).mapToObj(Integer::toString).collect(Collectors.joining(","));
-			if(!message.isEmpty()) {
+		String message=getNumber().filter(n -> n <0).mapToObj(Integer::toString).collect(Collectors.joining(","));
+		if(!message.isEmpty()) {
 			throw new IllegalArgumentException("number is: "+message);
 		}
 	}
 
-
 	private IntStream getNumber() {
-		return Arrays.stream(sum.split(delimiter)).mapToInt(Integer::parseInt);
-	}
-    	
+		return Arrays.stream(sum.split(delimiter)).mapToInt(Integer::parseInt).filter(n -> n<1000);
+	}  	
 }
 

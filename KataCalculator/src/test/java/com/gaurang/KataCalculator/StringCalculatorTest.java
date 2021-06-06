@@ -35,17 +35,22 @@ public class StringCalculatorTest
     public ExpectedException expectedexception= ExpectedException.none();
     
     @Test
-    public void OnNegativeNumber() {
+    public void onNegativeNumber() {
     	expectedexception.expect(IllegalArgumentException.class);
     	expectedexception.expectMessage("number is: -3");
     	StringCalculator.add("-3");
     }
     
     @Test
-    public void OnMultiNegativeNumberAllInMessage() {
+    public void onMultiNegativeNumberAllInMessage() {
     	expectedexception.expect(IllegalArgumentException.class);
     	expectedexception.expectMessage("number is: -3,-2,-1");
     	StringCalculator.add("-3,1,-2,-1");
+    }
+    
+    @Test
+    public void numberMoreThan1000Ignored() {
+    	assertThat(StringCalculator.add("1010,5"), is(5));
     }
     
     
