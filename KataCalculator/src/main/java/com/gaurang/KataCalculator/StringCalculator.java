@@ -1,6 +1,7 @@
 package com.gaurang.KataCalculator;
 
 import java.util.Arrays;
+import java.util.regex.Pattern;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
@@ -20,13 +21,22 @@ public class StringCalculator {
     	StringCalculator calculator;
     	if(input.startsWith("//")) {
     		String[] part=input.split("\n", 2);
-    		calculator = new StringCalculator(part[0].substring(2),part[1]);
+    		String header = part[0];
+			calculator = new StringCalculator(parseHeader(header),part[1]);
     	}
     	else
     		calculator =new StringCalculator(",|\n",input);
     	
     	return calculator.number();
     	}
+
+	private static String parseHeader(String header) {
+		String delimiter = header.substring(2);
+		if(delimiter.startsWith("[")) {
+			delimiter=delimiter.substring(1,delimiter.length()-1);
+		}
+		return Pattern.quote(delimiter);
+	}
 
 	private int number() {
 		exceptionNoNegative();

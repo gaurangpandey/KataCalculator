@@ -53,5 +53,9 @@ public class StringCalculatorTest
     	assertThat(StringCalculator.add("1010,5"), is(5));
     }
     
+    @Test
+    public void delimiterAnyLength() {
+    	assertThat(StringCalculator.add("//[***]\n1***2***3"), is(6));
+    }
     
 }
